@@ -441,13 +441,14 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
 
 
+
 # Doze
 PRODUCT_PACKAGES += \
     XiaomiDoze
+
 
 # ramdisk
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/init.spectrum.rc:root/init.spectrum.rc \
     $(LOCAL_PATH)/rootdir/init.spectrum.sh:root/init.spectrum.sh
-
 
