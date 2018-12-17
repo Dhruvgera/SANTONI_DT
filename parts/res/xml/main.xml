@@ -76,4 +76,14 @@
             android:icon="@drawable/ic_vibrate" />
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:key="hw_buttons"
+        android:title="@string/hw_buttons_title" >
+        <SwitchPreference
+            android:key="buttons_swap"
+            android:defaultValue="false"
+            android:title="@string/swap_hw_buttons_title"
+            android:summary="@string/swap_hw_buttons_summary"
+            android:icon="@drawable/ic_swap_buttons" />
+    </PreferenceCategory>
 </PreferenceScreen>

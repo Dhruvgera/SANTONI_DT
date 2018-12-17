@@ -46,6 +46,7 @@ import android.util.Log;
 public class DeviceSettings extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
+    private static final String KEY_CATEGORY_HW_BUTTONS = "hw_buttons";
     private static final String KEY_CATEGORY_DISPLAY = "display";
     private static final String SPECTRUM_KEY = "spectrum";
     private static final String SPECTRUM_SYSTEM_PROPERTY = "persist.spectrum.profile";
@@ -53,6 +54,9 @@ public class DeviceSettings extends PreferenceFragment implements
     public static final String KEY_VIBSTRENGTH = "vib_strength";
     public static final String KEY_S2S_VIBSTRENGTH = "s2s_vib_strength";
     public static final String FILE_S2S_TYPE = "/sys/sweep2sleep/sweep2sleep";
+
+    public static final String BUTTONS_SWAP_KEY = "buttons_swap";
+    public static final String BUTTONS_SWAP_PATH = "/proc/touchpanel/reversed_keys_enable";
 
     final String KEY_DEVICE_DOZE = "device_doze";
     final String KEY_DEVICE_DOZE_PACKAGE_NAME = "org.lineageos.settings.doze";
@@ -64,10 +68,14 @@ public class DeviceSettings extends PreferenceFragment implements
     private ListPreference mS2S;
     private Preference mKcalPref;
     private ListPreference mSPECTRUM;
+    private SwitchPreference mButtonSwap;
+    private PreferenceCategory mHWButtons;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.main, rootKey);
+
+        PreferenceScreen prefSet = getPreferenceScreen();
 
         mKcalPref = findPreference("kcal");
         mKcalPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -82,6 +90,15 @@ public class DeviceSettings extends PreferenceFragment implements
         mS2S = (ListPreference) findPreference(S2S_KEY);
         mS2S.setValue(Utils.getFileValue(FILE_S2S_TYPE, "0"));
         mS2S.setOnPreferenceChangeListener(this);
+
+        if (Utils.fileWritable(BUTTONS_SWAP_PATH)) {
+            mButtonSwap = (SwitchPreference) findPreference(BUTTONS_SWAP_KEY);
+            mButtonSwap.setChecked(Utils.getFileValueAsBoolean(BUTTONS_SWAP_PATH, false));
+            mButtonSwap.setOnPreferenceChangeListener(this);
+        } else {
+            mHWButtons = (PreferenceCategory) prefSet.findPreference("hw_buttons");
+            prefSet.removePreference(mHWButtons);
+        }
 
         mSPECTRUM = (ListPreference) findPreference(SPECTRUM_KEY);
         if( mSPECTRUM != null ) {
@@ -103,7 +120,10 @@ public class DeviceSettings extends PreferenceFragment implements
             PreferenceCategory displayCategory = (PreferenceCategory) findPreference(KEY_CATEGORY_DISPLAY);
             displayCategory.removePreference(findPreference(KEY_DEVICE_DOZE));
         }
+    }
 
+    private void setButtonSwap(boolean value) {
+            Utils.writeValue(BUTTONS_SWAP_PATH, value ? "1" : "0");
     }
 
     @Override
@@ -127,8 +147,15 @@ public class DeviceSettings extends PreferenceFragment implements
             strvalue = (String) newValue;
             SystemProperties.set(SPECTRUM_SYSTEM_PROPERTY, strvalue);
             return true;
+        } else if (BUTTONS_SWAP_KEY.equals(key)) {
+            value = (Boolean) newValue;
+            mButtonSwap.setChecked(value);
+            setButtonSwap(value);
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
+            editor.putBoolean(BUTTONS_SWAP_KEY, value);
+            editor.commit();
+            return true;
         }
-
         return true;
     }
 
