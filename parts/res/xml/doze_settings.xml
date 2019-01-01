@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
      Copyright (C) 2015 The CyanogenMod Project
+                   2018-2019 The LineageOS Project
 
      Licensed under the Apache License, Version 2.0 (the "License"
      you may not use this file except in compliance with the License.
@@ -16,15 +17,12 @@
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Preference
-    	android:key="@string/ui_theme_preference_key"
-	android:title="@string/ui_theme_preference_title" />
-   
     <SwitchPreference
-        android:key="ambient_display"
-        android:defaultValue="true"
-        android:title="@string/ambient_display_title"
-        android:summary="@string/ambient_display_summary" />
+        android:key="always_on_display"
+        android:defaultValue="false"
+        android:disableDependentsState="true"
+        android:title="@string/ambient_display_always_on_title"
+        android:summary="@string/ambient_display_always_on_summary" />
 
     <PreferenceCategory
         android:key="tilt_sensor"
