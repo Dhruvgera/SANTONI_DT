@@ -27,6 +27,7 @@
 
 import /init.spectrum.rc
 import /vendor/etc/init/hw/init.qcom.usb.rc
+import /vendor/etc/init/init.parts.rc
 import /vendor/etc/init/hw/init.target.rc
 
 on early-init
