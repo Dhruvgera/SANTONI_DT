@@ -1,3 +1,3 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aosp_santoni.mk
+    $(LOCAL_DIR)/pixys_santoni.mk
 
