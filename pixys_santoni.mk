@@ -20,6 +20,8 @@ $(call inherit-product, device/xiaomi/santoni/full_santoni.mk)
 $(call inherit-product, vendor/pixys/config/common.mk)
 $(call inherit-product, vendor/pixys/config/common_full_phone.mk)
 
+TARGET_BOOT_ANIMATION_RES := 720
+
 PRODUCT_DEVICE := santoni
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := Redmi 4X
