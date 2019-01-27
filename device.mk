@@ -129,11 +129,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     AntHalService \
     com.dsi.ant.antradio_library
-	
-# Advanced Controls
-PRODUCT_PACKAGES += \
-	AdvancedControls
-
 
 # Bluetooth
 PRODUCT_PACKAGES += \
