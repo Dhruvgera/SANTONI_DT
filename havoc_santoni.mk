@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2017 The LineageOS Project
+# Copyright (C) 2018-2019 The HavocOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,21 +16,26 @@
 
 $(call inherit-product, device/xiaomi/santoni/full_santoni.mk)
 
-# Inherit some common AEX stuff.
-$(call inherit-product, vendor/aosp/common.mk)
-
-TARGET_BOOT_ANIMATION_RES := 720
+# Inherit some common HavocOS stuff.
+$(call inherit-product, vendor/havoc/config/common.mk)
 
 PRODUCT_DEVICE := santoni
 PRODUCT_BRAND := Xiaomi
-PRODUCT_MODEL := Redmi 4X
-PRODUCT_NAME := aosp_santoni
+PRODUCT_MODEL := Redmi 4
+PRODUCT_NAME := havoc_santoni
 BOARD_VENDOR := Xiaomi
 PRODUCT_MANUFACTURER := Xiaomi
+
+#Stargazing
+HAVOC_BUILD_TYPE := Stargazing
+
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.havoc.maintainer="STARGAZER"
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="santoni-user 7.1.2 N2G47H V9.5.10.0.NAMMIFD release-keys"
 
+# Set BUILD_FINGERPRINT variable to be picked up by both system and vendor build.prop
 BUILD_FINGERPRINT := "Xiaomi/santoni/santoni:7.1.2/N2G47H/V9.5.10.0.NAMMIFD:user/release-keys"
