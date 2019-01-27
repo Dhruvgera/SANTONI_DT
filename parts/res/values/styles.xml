@@ -60,3 +60,4 @@
         <item name="android:thumbTint">@color/switchbar_switch_thumb_tint</item>
     </style>
 </resources>
+
