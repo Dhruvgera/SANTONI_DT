@@ -440,9 +440,9 @@ PRODUCT_COPY_FILES += \
 
 
 
-# Doze
+# XiaomiParts
 PRODUCT_PACKAGES += \
-    XiaomiDoze
+    XiaomiParts
 
 
 # ramdisk
