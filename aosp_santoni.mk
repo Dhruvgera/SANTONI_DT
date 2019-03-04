@@ -16,7 +16,7 @@
 
 $(call inherit-product, device/xiaomi/santoni/full_santoni.mk)
 
-# Inherit some common LineageOS stuff.
+# Inherit some common AEX stuff.
 $(call inherit-product, vendor/aosp/common.mk)
 
 PRODUCT_DEVICE := santoni
@@ -29,6 +29,7 @@ PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
 EXTENDED_BUILD_TYPE := OFFICIAL
+TARGET_BOOT_ANIMATION_RES := 720
 
 # Use Jelly 
 TARGET_USE_JELLY := true
