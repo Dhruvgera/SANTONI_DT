@@ -17,7 +17,7 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 $(call inherit-product, vendor/xiaomi/santoni/santoni-vendor.mk)
-#$(call inherit-product, vendor/nitrogen/config/qcom_utils.mk)
+
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -66,6 +66,17 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.print.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.print.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml
+
+
+# ANT
+PRODUCT_PACKAGES += \
+    AntHalService \
+    com.dsi.ant.antradio_library \
+    libantradio
+
+# Device-specific Settings
+PRODUCT_PACKAGES += \
+    XiaomiParts
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -180,7 +191,21 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.1-service \
     android.hardware.graphics.mapper@2.0-impl \
     android.hardware.memtrack@1.0-impl \
-    android.hardware.memtrack@1.0-service
+    android.hardware.memtrack@1.0-service \
+    copybit.msm8953 \
+    gralloc.msm8953 \
+    hwcomposer.msm8953 \
+    memtrack.msm8953 \
+    libdisplayconfig \
+    liboverlay \
+    libqdMetaData.system \
+    libgenlock \
+    libtinyxml \
+    vendor.display.config@1.0 \
+    vendor.display.config@1.0_vendor
+
+PRODUCT_BOOT_JARS += \
+    WfdCommon
 
 PRODUCT_PROPERTY_OVERRIDES += debug.hwui.use_buffer_age=false
 
@@ -312,6 +337,10 @@ PRODUCT_PACKAGES += \
 # Xiaomi Parts
 PRODUCT_PACKAGES += \
     XiaomiParts
+
+PRODUCT_BOOT_JARS += \
+    QPerformance \
+    UxPerformance
 
 # Power
 PRODUCT_PACKAGES += \
