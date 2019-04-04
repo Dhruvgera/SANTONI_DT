@@ -449,9 +449,4 @@ PRODUCT_PACKAGES += \
     XiaomiDoze
 
 
-# ramdisk
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/init.spectrum.rc:root/init.spectrum.rc \
-    $(LOCAL_PATH)/rootdir/init.spectrum.sh:root/init.spectrum.sh
-
 

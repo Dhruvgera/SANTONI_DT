@@ -27,10 +27,7 @@ BOARD_VENDOR := Xiaomi
 PRODUCT_MANUFACTURER := Xiaomi
 
 #Stargazing
-HAVOC_BUILD_TYPE := Stargazing
-
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.havoc.maintainer="STARGAZER"
+HAVOC_BUILD_TYPE := Rockstar_Exclusive
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
